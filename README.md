@@ -46,14 +46,22 @@ Otra dificultad que tuve fue la optimización de tiempos aleatorios ya que, por 
 
 Robot lanzado durante 5 minutos:
 
-[text](blob:https%3A//web.whatsapp.com/e31d48d3-14cb-4557-91b1-20dc4a98a1cd)
+![WhatsApp Image 2024-09-28 at 12 37 31](https://github.com/user-attachments/assets/35c3cc7b-1ea9-4691-b063-0f53ef57b2df)
+
 
 Robot lanzado durante 15 minutos:
 
-[text](blob:https%3A//web.whatsapp.com/33450832-181e-41fb-96e6-245d509362f5)
+![WhatsApp Image 2024-09-28 at 13 00 39](https://github.com/user-attachments/assets/f2cf608f-06c1-48fe-86d7-b3b0442b96f5)
+
 
 Como se puede ver en ambas imágenes superiores, pese a dejarlo más tiempo, el área limpia es apenas un poco más grande, esto se debe a una de las dificultades comentadas anteriormente. Una vez realizado una optimización de tiempos, el resultado final es el siguiente (15 minutos):
 
-[text](blob:https%3A//web.whatsapp.com/e969b59d-5fa8-40e3-86cb-98db9d5e2e49)
+![WhatsApp Image 2024-09-28 at 14 23 00](https://github.com/user-attachments/assets/fef829de-ca47-4eb8-bcec-0bb7c528dc97)
+
 
 Vídeo de 5 minutos:
+
+https://github.com/user-attachments/assets/19bc4d9d-6ea9-4109-a2d1-ef55ff16093b
+
+Para ver más pruebas y el vídeo anterior en mejor calidad, pincha en el siguiente [enlace](https://youtu.be/_ddD5BQwkCw)
+
