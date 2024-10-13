@@ -35,10 +35,25 @@ Una vez detectada la línea y su centrode, es necesario implementar un controlad
 
 Para calcular el error, se ha establecido que el valor central esperado es el centro de la imagen (320) en el eje X, mientras que el valor del eje Y no se usa para el cálculo del error.
 
-ee
+Tras muchos intentos de prueba y error, los valores de las ganancias usadas son:
+
+Circuito simple:
+- Kp =
+- Kd =
+
+Circuito Ackermann:
+- Kp =
+- Kd =
 
 ## Dificultades
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+La mayor dificultad sin ninguna duda ha sido encontrar los valores de las ganancias del controlador PD ya que ha sido mediante prueba y error y al empezar la práctica tarde estas pruebas las he tenido que hacer los últimos días y la platadorma ha dado varios errores.
+
+## Vídeos
+
+Vídeo controlador **P** a baja velocidad inestable:
+
+[p2_movil_controladorP_sobreoscilado_y_lento.webm](https://github.com/user-attachments/assets/a607a05d-c7af-4482-87c2-9811d09fd712)
+
 
 ## Práctica 1 Vacuum Cleaner
 
