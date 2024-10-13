@@ -42,8 +42,8 @@ Circuito simple:
 - Kd = 0.000009
 
 Circuito Ackermann:
-- Kp =
-- Kd =
+- Kp = 0.0042
+- Kd = 0.0000071
 
 ## Dificultades
 La mayor dificultad sin ninguna duda ha sido encontrar los valores de las ganancias del controlador PD ya que ha sido mediante prueba y error y al empezar la práctica tarde estas pruebas las he tenido que hacer los últimos días y la plataforma ha dado varios errores.
@@ -56,11 +56,12 @@ Vídeo controlador **P** a baja velocidad inestable:
 
 Vídeo circuito Ackermann: tiene mucha más oscilación pero los giros son más controlados
 
-
-
 https://github.com/user-attachments/assets/b4f284de-4a4f-409b-b3a9-900bfd75aff3
 
+Vídeo circuito simple:
+Para poder ver el vídeo pincha en el enlace.
 
+[Vídeo final](https://youtube.com/shorts/F-GUy2nogWc?feature=share)
 
 ## Práctica 1 Vacuum Cleaner
 
