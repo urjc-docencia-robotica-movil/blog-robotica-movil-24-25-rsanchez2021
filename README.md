@@ -1,6 +1,40 @@
 # Blog asignatura Robótica Móvil
 Este es el blog que usaré para la asignatura **Robótica Móvil**. Es este blog, iré subiendo todas las prácticas y el resultado final de cada una de ellas.
 
+## Práctica 3 Onstacle detected
+
+## Introducción
+
+La tercera práctica consiste en elaborar un algoritmo **Virtual Force Field (VFF)** que sea capaz de recorrer el circuito entero esquivando los obstáculos y sin chocarse con las paredes. Para ello, deberá generar un vector de fuerza atractiva, otro de fuerza repulsiva y otro de fuerza resultante.
+
+## Fuerza atractiva
+Para generar el vector de la fuerza atractiva, basta con coger la posición del target, pero hay que tener en cunenta que hay que pasar dichas coordenadas a la posición relativa, es decir, respecto al robot. Es importante tener en cuenta que el target es muy dificil acercarse de forma exacta, por ello, hay que dejar un distáncia al target.
+
+A continuación, un vídeo donde aparecen las diferentes pruebas para el cálculo de la fuerza atractiva. Al principio, el vector no está normalizado, haciendo que el vector sea 
+
+
+
+https://github.com/user-attachments/assets/cc063147-7b92-4f0c-be9d-27b3ab1055ed
+
+
+
+## Fuerza repulsiva
+
+## Fuerza resultante
+
+## Mínimos locales
+
+## Dificultades
+
+## Vídeo
+
+
+
+
+
+
+
+
 ## Práctica 2 Follow Line
 
 ## Introducción
