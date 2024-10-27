@@ -10,29 +10,52 @@ La tercera práctica consiste en elaborar un algoritmo **Virtual Force Field (VF
 ## Fuerza atractiva
 Para generar el vector de la fuerza atractiva, basta con coger la posición del target, pero hay que tener en cunenta que hay que pasar dichas coordenadas a la posición relativa, es decir, respecto al robot. Es importante tener en cuenta que el target es muy dificil acercarse de forma exacta, por ello, hay que dejar un distáncia al target.
 
-A continuación, un vídeo donde aparecen las diferentes pruebas para el cálculo de la fuerza atractiva. Al principio, el vector no está normalizado, haciendo que el vector sea 
+A continuación, un vídeo donde aparecen las diferentes pruebas para el cálculo de la fuerza atractiva. Al principio, cuando sólo tenía la fuerza atractiva, esta la normalicé para que al grficar el vector quede dentro del visor, pero finalmente, no la normalizo. 
 
 
 
-https://github.com/user-attachments/assets/cc063147-7b92-4f0c-be9d-27b3ab1055ed
+https://github.com/user-attachments/assets/acddd5e8-7a75-4b79-a92d-b5a38e56c346
 
 
 
 ## Fuerza repulsiva
 
+Para calcular la fuerza repulsiva hay que tener en cuenta varias cosas. El vector fuerza repulsiva tiene que ser la suma de todos los objetos detectados. Ademñas, dependiendo de la distancia a la que se encuentre el objeto tienen mayor influencia que uno que está lejos. También hay que tener en cuenta, que hay que cambiarle el signo dado que el vector que se calcula es hacia el objeto, y necesito el contrario.
+
 ## Fuerza resultante
+
+La fuerza resultante es la suma de la fuerza repulsiva y la fuerza atractiva parametrizadas, es decir, 
+
+![image](https://github.com/user-attachments/assets/655f5b9d-b02a-4139-a07e-120b41629d31)
+
+En este caso, los parámetros finales para completar una vuelta son:
+
+**Vuelta 1**
+- Ka = 0.43
+- Kr = 0.09
+
+**Vuelta 2**
+- Ka = 0.4
+- Kr = 0.11
 
 ## Mínimos locales
 
+Uno de los principales problemas que he tenido a la hora de calcular las fuerzas es la aparición de mínimos locales. Esto se daba debido a que normalizaba los vectores, facilitando la aparición de estos mínimos. Para solucionarlo hice dos cosas, no normalizar las fuerzas y establecer siempre una velocidad mínima para que el coche esté constantemente en movimiento.
+
+
+[p3_movil_minimo_local.webm](https://github.com/user-attachments/assets/ed6bcae4-aabb-4fdd-bdc5-e968106c73b2)
+
+
+
 ## Dificultades
+
+Además de la dificultad del mínimo local he tenido otro gran problema con la fuerza repulsiva, ya que no terminaba con dar la forma de que el vector final sea el conjunto de todos los obstáculos. 
 
 ## Vídeo
 
+Vídeo final con pruebas y dos vueltas completas.
 
-
-
-
-
+https://youtu.be/-vslRJUO0D0
 
 
 ## Práctica 2 Follow Line
