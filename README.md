@@ -5,44 +5,66 @@ Este es el blog que usaré para la asignatura **Robótica Móvil**. Es este blog
 
 ## Introducción
 
+El objetivo de la cuarta práctica es realizar un algoritmo de "Gradient Path Planning" para que un taxi sea capaz de navegar hasta un target que nosotros queramos. Para ello, se han tenido que implementar principalmente tres cosas: un algoritmo Wave Front para poder así sacar un mapa de costes, el path hasta el target y la navegación.
+
 ## Wave Front Algorithm
 
-## Expansión de obstáclos
+Antes de poder hacer el mapa de costes hay que tener en cuenta varios detalles:
+- Las coordenadas en el mundo no son las mismas que las del grid, por ejemplo, para el mundo el taxi inicialmente está en el (200,200) pero para el grid inicialmente está en (0,0).
+- En versiones anteriorres del docker, el mapa tenía pixeles grises que eran necesarios quitar, pero que actualmente no existen.
+- Los vecinos seleccionados para cada celda son los 8 vecinos inmediatos de cada una, dentro de los límites del mapa.
+[imagen]
 
+Una vez se tiene esto en cuenta, para poder calcular el mapa de costes, hay que ir siguiendo la cosa de vecinos, que cada vez va en aumento, mientras que e van sumando costes, desde el target (con coste inicial 0) hasta el taxi.
 
-
+A contnuación, un vidoe de cómo se va realizando el mapa de costes:
 
 https://github.com/user-attachments/assets/700a7e3e-45c9-4cf9-b1e4-5248c45ba5f4
 
+## Expansión de obstáclos
 
+La expansión de obstáculos no termina de funcionar del todo bien en mi algoritmo. Lo que haga para poder expandirlo es buscar los vecinos de las celdas obstáculos ( que ya eran vecinos de otra celda) y sumarles un coste muy alto. Pero haciendo esto, el mapa final termina con puntos blancos cerca de los obstáculos y por eso funciona parcialmente, pero está previsto mejorar esta parte del código.
 
+Posible arreglo: crear un primer mapa de costes, y en base a ese recorrer sólo las celdas obstáculos y poner los costes de sus vecinos muy altos o como si fuesen también obstáculos.
 
 ## Path Planning
 
-# Navigation
+Una vez hecho el mapa de costes, el path lo conseguiremos usando waypoints de la siguiente forma:
+1. Comenzar desde el taxi
+2. Buscar los vecinos de la celda actual
+3. Dentro de esos vecinos, solo los que son **alcanzables**, comprobamos el de menor coste.
+4. Guardamos en el path el vecino de menor coste y volvemos al paso 2 hasta alcanzar el target.
 
-# Dificultades
-Navegar sin umbral en waypoint
-orientación primero y luego lineal
-expansión de costes
+una vez realizado esto, podemos obtener el path y dibujarlo en la imagen:
 
+[Imagen]
 
+## Navigation
+
+Teniendo ya el path realizado y en coordenadas del mundo, podemos empezar a navegar. Para ellos, vamos a ir recorriendo todos los waypoints del path hasta llegar al objetivo. Al igual que en la práctica 3 (que también había waypoints) tenemos que darle valores a la velocidad linea y angular. En un inicio intenté poner ambas al mismo tiempo, calculando el angulo que difiere la orientación actual del taxi con la del siguiente waypoint, pero no fue muy buena idea:
 
 https://github.com/user-attachments/assets/dc10de6f-373a-4a44-884f-a053a4871469
 
+la solución fue separar las velocidades, es decir, primero orientar el taxi hacia el waypoint sin moverme linealmente, y cuando esté (dentro de un umbral) orientado, avanzar recto hacia el waypoint.
 
+Algo a tener en cuenta son los umbrales que hay que usar, al igual que se hizo en la práctica 3, es muy difícil quedar justo en una posición, por ello siempre hay que dejar un umbral para poder pasar al siguiente waypoint, en mi caso, lo mido en función de la distancia en cada eje.
+
+Ejemplo de no poner un umbral:
 
 https://github.com/user-attachments/assets/869c476a-75ac-4268-93d1-5a08ae4e619e
 
 
 
+## Dificultades
+
+He tenido dos dificultades principales, la expansión de costes (que no funciona muy bien) y la navegación.
+
+Como ya he explicado, la expansión de obstáculos solo genera pequeños puntos de coste máximo cerca de las paredes, suficientes para que el coche no se choque. 
+
+En la navegación, la principal dificultad fue llegar a la solución de separar primero la orientación y después avanzar.
 
 
-
-
-# vídeo final
-
-
+## vídeo final
 
 https://github.com/user-attachments/assets/cf8c8568-fe0f-4a69-9bab-ad56fa26a0de
 
