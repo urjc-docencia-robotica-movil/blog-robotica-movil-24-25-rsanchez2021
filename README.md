@@ -1,7 +1,55 @@
 # Blog asignatura Robótica Móvil
 Este es el blog que usaré para la asignatura **Robótica Móvil**. Es este blog, iré subiendo todas las prácticas y el resultado final de cada una de ellas.
 
-## Práctica 3 Onstacle detected
+## Práctica 4 Global Navigation
+
+## Introducción
+
+## Wave Front Algorithm
+
+## Expansión de obstáclos
+
+
+
+
+https://github.com/user-attachments/assets/700a7e3e-45c9-4cf9-b1e4-5248c45ba5f4
+
+
+
+
+## Path Planning
+
+# Navigation
+
+# Dificultades
+Navegar sin umbral en waypoint
+orientación primero y luego lineal
+expansión de costes
+
+
+
+https://github.com/user-attachments/assets/dc10de6f-373a-4a44-884f-a053a4871469
+
+
+
+https://github.com/user-attachments/assets/869c476a-75ac-4268-93d1-5a08ae4e619e
+
+
+
+
+
+
+
+# vídeo final
+
+
+
+https://github.com/user-attachments/assets/cf8c8568-fe0f-4a69-9bab-ad56fa26a0de
+
+
+
+
+## Práctica 3 Obstacle detected
 
 ## Introducción
 
