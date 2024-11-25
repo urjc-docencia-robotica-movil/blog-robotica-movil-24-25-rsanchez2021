@@ -46,7 +46,7 @@ https://github.com/user-attachments/assets/869c476a-75ac-4268-93d1-5a08ae4e619e
 
 https://github.com/user-attachments/assets/cf8c8568-fe0f-4a69-9bab-ad56fa26a0de
 
-
+Si quieres ver el video entero a la velocidad corresta pincha [aqui](https://youtu.be/npI1mvtc9Jg)
 
 
 ## Práctica 3 Obstacle detected
