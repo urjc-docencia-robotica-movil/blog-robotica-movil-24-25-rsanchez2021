@@ -13,13 +13,15 @@ Antes de poder hacer el mapa de costes hay que tener en cuenta varios detalles:
 - Las coordenadas en el mundo no son las mismas que las del grid, por ejemplo, para el mundo el taxi inicialmente está en el (200,200) pero para el grid inicialmente está en (0,0).
 - En versiones anteriorres del docker, el mapa tenía pixeles grises que eran necesarios quitar, pero que actualmente no existen.
 - Los vecinos seleccionados para cada celda son los 8 vecinos inmediatos de cada una, dentro de los límites del mapa.
-[imagen]
 
 Una vez se tiene esto en cuenta, para poder calcular el mapa de costes, hay que ir siguiendo la cosa de vecinos, que cada vez va en aumento, mientras que e van sumando costes, desde el target (con coste inicial 0) hasta el taxi.
 
 A contnuación, un vidoe de cómo se va realizando el mapa de costes:
 
 https://github.com/user-attachments/assets/700a7e3e-45c9-4cf9-b1e4-5248c45ba5f4
+
+![8_vecinos](https://github.com/user-attachments/assets/1b0f6090-c7d2-41ed-8cd3-ab1524ab9972)
+
 
 ## Expansión de obstáclos
 
@@ -37,7 +39,8 @@ Una vez hecho el mapa de costes, el path lo conseguiremos usando waypoints de la
 
 una vez realizado esto, podemos obtener el path y dibujarlo en la imagen:
 
-[Imagen]
+![Screenshot from 2024-11-24 17-10-38](https://github.com/user-attachments/assets/f6cc2c78-715c-4557-927d-2968593d63c6)
+
 
 ## Navigation
 
