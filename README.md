@@ -1,6 +1,36 @@
 # Blog asignatura Robótica Móvil
 Este es el blog que usaré para la asignatura **Robótica Móvil**. Es este blog, iré subiendo todas las prácticas y el resultado final de cada una de ellas.
 
+## Práctica 5 Monte Carlo Laser Localization
+El objetivo de la práctica es crear un algoritmo de localización para una aspiradores basado en el algoritmo de Monte Carlo usando un láser instalado en la aspiradora y el mapa. PAra explicar la implementación, voy a dividir la práctica en: inicialización de las partículas, propagación de las partículas, láser virtual, cálculo de los pesos, remuestreo de las partículas y funciones extras.
+
+## Inicialización de las partículas
+La primera idea que se me vino a la cabeza fue generar las partículas de forma aleatoria y luego comprobar si se encintraban dentro del mapa o no, y en caso de no estarlo generarla otra vez. Pero había varios problemas, había partículas que tenía que regenerarla varias veces y era muy poco óptimo. Por ello, la idea final fue primero coger las celdas libres (valor= 255) y luego a partir de ellas generar las partículas. De esta forma, sólo tenía que generarlas una vez. Además, se generaba un ángulo aleatorio entre -pi y pi y se asignaba a cada partícula. 
+
+## Propagación de las partículas
+Siguiendo el ejemplo [particle_propagation_example.py]() se ha calculado el tiempo que tarda entre iteraciones y con ello el movimiento del robot. Una vez calculado esto, se le ha sumado a todas las partículas, tanto X Y como YAW. Esto se puede hacer ya que el movimiento de mi aspiradora es contante tando lineal como angular, y no es necesario calcularlo de cada partícula, sino en global. 
+
+## Láser virtual
+Para calcular el láser vistual, me he basado en el ejemplo [raytracing_example.py]() pero he aumentado el número de rayos ya que sino no convergía en la posición adecuada. Comentar que el láser virtual sólo se calcula en las partículas que están dentro del mapa, sino se ponen los valores máximos. Como mejora se puede hacer también que si una partícula se encuentra en un obstáculo también se pongan los valores máximos de láser teórico.
+
+## Cálculo de los pesos
+Para 
+
+## Remuestreo de las partículas
+
+
+## Funciones extras
+
+
+## Valores optimizados
+
+
+## Dificultades
+
+
+## Vídeos
+
+
 ## Práctica 4 Global Navigation
 
 ## Introducción
