@@ -17,8 +17,6 @@ Ejemplos con 50, 100 y 300 partículas:
 
 
 
-
-
 ## Propagación de las partículas
 Siguiendo el ejemplo [particle_propagation_example.py]() se ha calculado el tiempo que tarda entre iteraciones y con ello el movimiento del robot. Una vez calculado esto, se le ha sumado a todas las partículas, tanto X Y como YAW. Esto se puede hacer ya que el movimiento de mi aspiradora es contante tando lineal como angular, y no es necesario calcularlo de cada partícula, sino en global. 
 
@@ -78,9 +76,26 @@ Finalmente, los mejores valores son:
 - RAYTRACING_SKIP_STEPS = 2 (mínimo 1)
 
 ## Dificultades
-
+Durante esta práctica he tenido dos grandes dificultades. Una de ellas es la que suelo tener en la mayoría de las prácticas que es el paso de coordenadas del mapa al mundo, pero tras un par de ejemplos lo pude comprender. Otra dificultad fue también llegar a ciertos valores para que el algoritmo funcionase. No hay muchas dificultades ya que estaba todo bien organizado con ejemplos y
 
 ## Vídeos
+
+
+
+[p5_moil_bueno_300_16_2.webm](https://github.com/user-attachments/assets/b62ce440-96da-418b-90c3-2fed4549a4d2)
+
+
+
+[video bueno 2](https://github.com/user-attachments/assets/f5f5cb5c-9814-4c67-8190-c1111c2917ae)
+
+
+
+
+
+[video bueno 3](https://github.com/user-attachments/assets/7b071af7-dbfa-4bf6-86a1-7e0d33559545)
+
+
+
 
 
 ## Práctica 4 Global Navigation
