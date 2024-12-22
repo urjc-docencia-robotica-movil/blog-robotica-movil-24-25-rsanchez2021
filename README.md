@@ -7,23 +7,75 @@ El objetivo de la práctica es crear un algoritmo de localización para una aspi
 ## Inicialización de las partículas
 La primera idea que se me vino a la cabeza fue generar las partículas de forma aleatoria y luego comprobar si se encintraban dentro del mapa o no, y en caso de no estarlo generarla otra vez. Pero había varios problemas, había partículas que tenía que regenerarla varias veces y era muy poco óptimo. Por ello, la idea final fue primero coger las celdas libres (valor= 255) y luego a partir de ellas generar las partículas. De esta forma, sólo tenía que generarlas una vez. Además, se generaba un ángulo aleatorio entre -pi y pi y se asignaba a cada partícula. 
 
+Ejemplos con 50, 100 y 300 partículas:
+
+![movil_p5_50_particles](https://github.com/user-attachments/assets/8b072b18-6dbd-4f47-8e52-f349aeaf162b)
+
+![movil_p5_100_particles](https://github.com/user-attachments/assets/8b5f3552-0a1d-4c18-a800-5a9de3683ed2)
+
+![movil_p5_300_particles](https://github.com/user-attachments/assets/bed84898-ff1b-4e0b-9f13-cc58c4be11ad)
+
+
+
+
+
 ## Propagación de las partículas
 Siguiendo el ejemplo [particle_propagation_example.py]() se ha calculado el tiempo que tarda entre iteraciones y con ello el movimiento del robot. Una vez calculado esto, se le ha sumado a todas las partículas, tanto X Y como YAW. Esto se puede hacer ya que el movimiento de mi aspiradora es contante tando lineal como angular, y no es necesario calcularlo de cada partícula, sino en global. 
+
+Ejemplo con 5 partículas:
+
+[movil_p5_mov_particulas.webm](https://github.com/user-attachments/assets/7109c183-a5c0-4a56-95cf-8eac11010396)
+
+Ejemplo con 50 partículas:
+
+[p5_movil_50_particulas.webm](https://github.com/user-attachments/assets/235d0e6e-e608-41d3-9143-d2141529d104)
+
+
 
 ## Láser virtual
 Para calcular el láser vistual, me he basado en el ejemplo [raytracing_example.py]() pero he aumentado el número de rayos ya que sino no convergía en la posición adecuada. Comentar que el láser virtual sólo se calcula en las partículas que están dentro del mapa, sino se ponen los valores máximos. Como mejora se puede hacer también que si una partícula se encuentra en un obstáculo también se pongan los valores máximos de láser teórico.
 
 ## Cálculo de los pesos
-Para 
+El cálculo de los pesos depende de la similitud que tenga con el láser real. Se puede dividir en dos la asignación de pesos: peso nulo o peso no nulo. El peso nulo se le asigna a aquellas partículas que no se encuentren en el mapa o que sean un obstáculo, además, se ha tenidoq ue añadir que si hay un mal cálculo del láser teórico el peso sea de 0 ya que sino saltaban errores. Para los pesos no nulos, se calcula la diferencia entre el laser teórico y el laser real y siguiendo una función gaussiana se les establece unos pesos. Además, se normalizan todos los pesos para que el remuestreo sea más fácil.
 
 ## Remuestreo de las partículas
+El remuestreo se basa en elegir partículas random pero cuanto mayor peso tengan mayor probabilidad de que salgan tienen. Como hay particulas repetidas en el remuestreo, se ha añadido ruido ya que sino coincidian unas encimas de otras. De esta forma, siempre se crea un pequeño área.
+
+Ejemplo de un mal remuestreo
+
+![movil_p5_muchas_par_fuera](https://github.com/user-attachments/assets/6a8563fa-f3b8-44ca-8ed4-3063b10a1188)
+
+Ejemplos sin ruido:
+
+[p5_movil_converge_despacio_mal.webm](https://github.com/user-attachments/assets/e081bc6f-3ccb-46c3-9cd1-d8972788e82d)
+
+
+[p5_movil_converge_mal_rapido.webm](https://github.com/user-attachments/assets/ec1d4492-128b-4252-8cdf-cbca726cd8a4)
+
+
+[p5_movil_converge_mal_rapido_2.webm](https://github.com/user-attachments/assets/8ad4512b-2c49-4d4b-b4a3-e7da00366da4)
+
+
+[p5_movil_converge_mal_rapido_300.webm](https://github.com/user-attachments/assets/dc0559f5-cdff-45cd-8757-e2a2a604e138)
+
+Ejemplos con ruido pero poco preciso:
+
+[p5_movil_convergen_mal.webm](https://github.com/user-attachments/assets/55912305-d140-411c-8587-26dbb130548f)
+
+[p5_movil_no_mejora_mucho_pero_algo.webm](https://github.com/user-attachments/assets/2dcf2e7e-5c9b-4cec-8b07-8b4049892884)
+
 
 
 ## Funciones extras
-
+Algunas funciones también implementadas en el código son: get:map() para poder tener el mapa útil; parse_laser_data() para el láser real del robot; is_within_map_bound() para comprobar que las partículas estñan dentro del mapa; compute_estimated_pose() para calcular la media de las partículas y poder proyectar el robot en la posición calculada. 
 
 ## Valores optimizados
-
+Finalmente, los mejores valores son:
+- N_PARTICLES = 300 (se ha probado también con 500)
+- VEL_V = 0.2 y VEL_W = 0.2 (si se aumenta mucho las velocidades no funciona)
+- MAX_LASER_DISTANCE = 10 (máximo 20)
+- LASER_NUM_BEAMS = 16 (mínimo 8)
+- RAYTRACING_SKIP_STEPS = 2 (mínimo 1)
 
 ## Dificultades
 
