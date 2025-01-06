@@ -1,6 +1,11 @@
 # Blog asignatura Robótica Móvil
 Este es el blog que usaré para la asignatura **Robótica Móvil**. Es este blog, iré subiendo todas las prácticas y el resultado final de cada una de ellas.
 
+## Cambios enero
+- P2 añadido apartado Modificaciones y mejoras
+- P4 modificado apartado expansión de obstáculos
+- P4 añadido apartado de Modificación y mejoras
+
 ## Práctica 5 Monte Carlo Laser Localization
 El objetivo de la práctica es crear un algoritmo de localización para una aspiradores basado en el algoritmo de Monte Carlo usando un láser instalado en la aspiradora y el mapa. PAra explicar la implementación, voy a dividir la práctica en: inicialización de las partículas, propagación de las partículas, láser virtual, cálculo de los pesos, remuestreo de las partículas y funciones extras.
 
@@ -111,7 +116,7 @@ Antes de poder hacer el mapa de costes hay que tener en cuenta varios detalles:
 - En versiones anteriorres del docker, el mapa tenía pixeles grises que eran necesarios quitar, pero que actualmente no existen.
 - Los vecinos seleccionados para cada celda son los 8 vecinos inmediatos de cada una, dentro de los límites del mapa.
 
-Una vez se tiene esto en cuenta, para poder calcular el mapa de costes, hay que ir siguiendo la cosa de vecinos, que cada vez va en aumento, mientras que e van sumando costes, desde el target (con coste inicial 0) hasta el taxi.
+Una vez se tiene esto en cuenta, para poder calcular el mapa de costes, hay que ir siguiendo la cola de vecinos, que cada vez va en aumento, mientras que se van sumando costes, desde el target (con coste inicial 0) hasta el taxi.
 
 A contnuación, un vidoe de cómo se va realizando el mapa de costes:
 
@@ -120,11 +125,28 @@ https://github.com/user-attachments/assets/700a7e3e-45c9-4cf9-b1e4-5248c45ba5f4
 ![8_vecinos](https://github.com/user-attachments/assets/1b0f6090-c7d2-41ed-8cd3-ab1524ab9972)
 
 
-## Expansión de obstáclos
+## Expansión de obstáclos (Modificado)
 
-La expansión de obstáculos no termina de funcionar del todo bien en mi algoritmo. Lo que haga para poder expandirlo es buscar los vecinos de las celdas obstáculos ( que ya eran vecinos de otra celda) y sumarles un coste muy alto. Pero haciendo esto, el mapa final termina con puntos blancos cerca de los obstáculos y por eso funciona parcialmente, pero está previsto mejorar esta parte del código.
+La expansión de obstáculos la realizo posteriormente al mapa de costes inicial. Para ello, compruebo los vecinos más cercanos a los obstáculos y les pongo un peso fijo de 255. En un principio, esto lo hacía seguido a la hora de calcular el mapa de costes, pero había saltos muy bruscos y el mapa no quedaba bien:
 
-Posible arreglo: crear un primer mapa de costes, y en base a ese recorrer sólo las celdas obstáculos y poner los costes de sus vecinos muy altos o como si fuesen también obstáculos.
+
+![Screenshot from 2025-01-06 20-35-38](https://github.com/user-attachments/assets/f0fa7503-1959-4fa3-99e3-a76d22339424)
+
+
+Finalmente, haciendo la expansión de obstáculos posteriormente el mapa quedaría:
+Con 8 vecinos:
+
+![Screenshot from 2025-01-06 20-54-21](https://github.com/user-attachments/assets/64524b3c-9143-46ba-b2a4-82d0040c5959)
+
+
+[p4_mapa_bien.webm](https://github.com/user-attachments/assets/d0bca10b-5486-4dff-ba2f-bcb32c82d230)
+
+
+Con más vecinos:
+
+![Screenshot from 2025-01-06 20-29-18](https://github.com/user-attachments/assets/3f887610-823f-4301-88eb-eaedb0678944)
+
+
 
 ## Path Planning
 
@@ -154,7 +176,6 @@ Ejemplo de no poner un umbral:
 https://github.com/user-attachments/assets/869c476a-75ac-4268-93d1-5a08ae4e619e
 
 
-
 ## Dificultades
 
 He tenido dos dificultades principales, la expansión de costes (que no funciona muy bien) y la navegación.
@@ -164,11 +185,27 @@ Como ya he explicado, la expansión de obstáculos solo genera pequeños puntos 
 En la navegación, la principal dificultad fue llegar a la solución de separar primero la orientación y después avanzar.
 
 
-## vídeo final
+## Vídeo final
 
 https://github.com/user-attachments/assets/cf8c8568-fe0f-4a69-9bab-ad56fa26a0de
 
 Si quieres ver el video entero a la velocidad corresta pincha [aqui](https://youtu.be/npI1mvtc9Jg)
+
+## Modificaciones y mejoras
+
+Además del cambio de la expansión de obstáculos (ver apartado) también he quitado el path planning e implementado un descenso por gradiente. Para ello, primero buscaba dentro de una vecindad de gran tamaño la celdilla con el menor coste posible, después, esa celdilla se pasaba la posición al mundo y se navegaba hasta él. En caso de que no queden celdillas sin visitar, salta una excepción, evitando así posibles errores. 
+
+Una de las dificultades que he tenido ha sido el paso de path planning a gradiente, ya que no conseguía hacer que el taxi avanzase y se quedaba siempre dando vueltas en un mismo sitio:
+
+
+[p4_error_navegacion.webm](https://github.com/user-attachments/assets/b71c73a9-1106-4fd8-9ffd-db41d5d64c1e)
+
+
+[p4_error_navegar.webm](https://github.com/user-attachments/assets/9edf3e80-1719-4b7c-b418-51d59d365a86)
+
+Vídeos finales:
+
+AÑADIR VIDEOSSSSSS
 
 
 ## Práctica 3 Obstacle detected
@@ -304,15 +341,15 @@ Los valore utilizados son:
 
 Dificultades al mejorar la práctica no he tenido muchos, lo más complicado ha sido buscar los valores de las ganancias y velocidades para que el coche pueda recorrer el circuito varias veces sin chocarse y evitando que oscile.
 
-vídeos de prueba:
+Vídeos de prueba:
+
+https://github.com/user-attachments/assets/34655898-3d6c-44b0-b64f-af8582f491f2
+
 
 Videos finales:
 
-
-
-
-
-
+Enlace al vídeo de 1 vuelta: https://youtu.be/ng2vDjb-cxo
+Enlace al vídeo con varias vueltas: https://youtu.be/suDZou1zNHU
 
 ## Práctica 1 Vacuum Cleaner
 
