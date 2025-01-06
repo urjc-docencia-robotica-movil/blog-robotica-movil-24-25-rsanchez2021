@@ -290,6 +290,30 @@ Para poder ver el vídeo pincha en el enlace.
 
 [Vídeo final](https://youtube.com/shorts/F-GUy2nogWc?feature=share)
 
+## Modificaciones y mejoras
+
+Respecto al filtro de color, se ha dejado igual los valores. Pero, en vez de calcular el centroide, usando el ejemplo **image_red_filter.py** he sacado una línea en una posición exacta, extraido los píxeles de color rojo de la línea y calculado el centro, consiguiendo así que no pierda la línea en ningún momento y teniendo una "visión" más profunda.
+
+![p2_movil_linea_centro](https://github.com/user-attachments/assets/f785058d-12ec-4256-880f-ec61f3613044)
+
+En caso del PID, finalmente es sólo un PD. He arreglado el problema con la actualización del error anterior y cambiado la diferencia de tiempo fija por la real. 
+
+Los valore utilizados son:
+- Kp = 0.0049
+- Kd = 0.000001
+
+Dificultades al mejorar la práctica no he tenido muchos, lo más complicado ha sido buscar los valores de las ganancias y velocidades para que el coche pueda recorrer el circuito varias veces sin chocarse y evitando que oscile.
+
+vídeos de prueba:
+
+Videos finales:
+
+
+
+
+
+
+
 ## Práctica 1 Vacuum Cleaner
 
 ## Introducción
