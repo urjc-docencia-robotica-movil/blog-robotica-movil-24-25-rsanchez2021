@@ -193,7 +193,7 @@ Si quieres ver el video entero a la velocidad corresta pincha [aqui](https://you
 
 ## Modificaciones y mejoras
 
-Además del cambio de la expansión de obstáculos (ver apartado) también he quitado el path planning e implementado un descenso por gradiente. Para ello, primero buscaba dentro de una vecindad de gran tamaño la celdilla con el menor coste posible, después, esa celdilla se pasaba la posición al mundo y se navegaba hasta él. En caso de que no queden celdillas sin visitar, salta una excepción, evitando así posibles errores. 
+Además del cambio de la expansión de obstáculos (ver apartado) también he quitado el path planning e implementado un descenso por gradiente. Para ello, primero buscaba dentro de una vecindad de gran tamaño la celdilla con el menor coste posible, después, esa celdilla se pasaba la posición al mundo y se navegaba hasta él. En caso de que no queden celdillas sin visitar, salta una excepción, evitando así posibles errores. Una de las mejoras más considerables es que al mover el robot va más fluido ya que he aumentado los umbrales, que junto con la vecindad mayor, mejora considerablemente la navegación. 
 
 Una de las dificultades que he tenido ha sido el paso de path planning a gradiente, ya que no conseguía hacer que el taxi avanzase y se quedaba siempre dando vueltas en un mismo sitio:
 
@@ -205,7 +205,9 @@ Una de las dificultades que he tenido ha sido el paso de path planning a gradien
 
 Vídeos finales:
 
-AÑADIR VIDEOSSSSSS
+Enlace vídeo primer ejemplo: https://youtu.be/BUudMGBW3sM
+
+Enlace vídeo segundo ejemplo: https://youtu.be/a_miCsGpFIQ
 
 
 ## Práctica 3 Obstacle detected
@@ -349,6 +351,7 @@ https://github.com/user-attachments/assets/34655898-3d6c-44b0-b64f-af8582f491f2
 Videos finales:
 
 Enlace al vídeo de 1 vuelta: https://youtu.be/ng2vDjb-cxo
+
 Enlace al vídeo con varias vueltas: https://youtu.be/suDZou1zNHU
 
 ## Práctica 1 Vacuum Cleaner
