@@ -6,6 +6,95 @@ Este es el blog que usaré para la asignatura **Robótica Móvil**. Es este blog
 - P4 modificado apartado expansión de obstáculos
 - P4 añadido apartado de Modificación y mejoras
 
+## Práctica 2 Follow Line (Junio)
+
+v10 kp 0.003
+
+https://github.com/user-attachments/assets/6feaf922-7730-404c-a9a3-6e908429ff5c
+
+
+v10 kp 0.006
+
+https://github.com/user-attachments/assets/c314b7f6-2721-4b51-9667-554df2284b77
+
+
+v10 kp 0.007
+
+https://github.com/user-attachments/assets/73ee0579-642a-4ee3-8cc9-ca93e12c9949
+
+
+v10 kp 0.008
+
+https://github.com/user-attachments/assets/c6809b4b-663b-4db7-baea-bf2db458921f
+
+v10 kp 0.009
+
+https://github.com/user-attachments/assets/8757285f-5e7e-4fb0-a8de-f6ed3f69211c
+
+
+v10 kp 0.01
+
+https://github.com/user-attachments/assets/669f7aab-2b21-4c85-bcb3-286fe62cca10
+
+
+
+v11 kp 0.01
+
+https://github.com/user-attachments/assets/eadedc25-a448-421e-b77c-56ad42495fb3
+
+
+v12 kp 0.01
+
+
+
+https://github.com/user-attachments/assets/a4ad76fa-c099-43ea-ba59-70535114fbce
+
+
+
+v15 kp 0.01
+
+
+
+https://github.com/user-attachments/assets/9c250d16-ea50-45f8-b22f-fc008ad22f22
+
+
+
+v12 kp 0.01 kd 0.000001
+
+https://github.com/user-attachments/assets/bc3564b4-1af1-4169-b96a-dcdda7e4deef
+
+
+
+
+
+
+
+
+
+v12 kp 0.01 kd 0.0001
+
+
+
+
+
+https://github.com/user-attachments/assets/8381f56e-fb34-4ba9-9a81-8d4884fed42b
+
+
+
+
+ 
+
+
+v12 kp 0.01 kp 0.001
+
+https://github.com/user-attachments/assets/cfda952e-ab40-46ed-a55f-ef7a8b934171
+
+
+
+
+
+
+
 ## Práctica 5 Monte Carlo Laser Localization
 El objetivo de la práctica es crear un algoritmo de localización para una aspiradores basado en el algoritmo de Monte Carlo usando un láser instalado en la aspiradora y el mapa. PAra explicar la implementación, voy a dividir la práctica en: inicialización de las partículas, propagación de las partículas, láser virtual, cálculo de los pesos, remuestreo de las partículas y funciones extras.
 
