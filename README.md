@@ -91,7 +91,48 @@ https://github.com/user-attachments/assets/cfda952e-ab40-46ed-a55f-ef7a8b934171
 
 
 
+## vid1
+V12 kp 0.02 kd 0.0015
 
+
+https://github.com/user-attachments/assets/ee14467a-a820-464d-adde-935ba76cbb2f
+
+
+
+
+V12 kp 0.017 kd 0.0015
+
+
+
+https://github.com/user-attachments/assets/cfc255a9-72b8-41d6-be04-1daca4c0a502
+
+
+
+
+V12 kp 0.018-0.019 kd 0.0015
+
+
+
+https://github.com/user-attachments/assets/2d377eeb-249b-4c63-889c-174201d39685
+
+
+
+
+V12 kp 0.019 kd 0.0015 
+
+
+
+https://github.com/user-attachments/assets/a4a22350-691b-4c78-a0e2-7c6ee878826c
+
+
+
+
+V12 kp 0.021 kd 0.0015
+
+
+
+
+https://github.com/user-attachments/assets/a929b8b4-2d7a-4985-bd22-f530e033e7fa
 
 
 
