@@ -6,7 +6,32 @@ Este es el blog que usaré para la asignatura **Robótica Móvil**. Es este blog
 - P4 modificado apartado expansión de obstáculos
 - P4 añadido apartado de Modificación y mejoras
 
-## Práctica 2 Follow Line (Junio)
+# Práctica 2 Follow Line (Junio)
+
+## Introducción
+La segunda práctica consiste en hacer un sigue líneas con un controlador PID, o PD en mi caso, para que de forma reactiva pueda completar una vuelta en varios circuitos. La implementación de esta práctica se puede dividir en dos partes principales: filtro de color y controlador.
+
+## Filtro de color
+Para poder conseguir el centroide de la línea roja he realizado varios cambios. En la primera entrega hacía un filtro de color rojo y luego el centroide, pero quedaba muy cerca del coche y no era efectivo. La modificación consiste en, desde una línea a 250 píxeles, calcular el punto medio de aquellos píexeles que sean rojos. De esta forma, se puede colocar la línea base en la altura más óptima.
+
+Otra modificación que he tenído que haceer es aumentar el rango de color rojo, ya que, después de alguna actualización de docker, el color rojo no era el mismo. Para ello he tenido que realizar dos máscaras para los rangos de H separados del color rojo.
+
+```
+lower_red = np.array([0, 100, 100])
+upper_red = np.array([10, 255, 255])
+
+lower_red2 = np.array([160, 100, 100])
+upper_red2 = np.array([180, 255, 255])
+
+```
+Como última modificación, en caso de perder la línea, el centroide se dibuja de color rojo, sino de color azul. De esta forma pude hacer prueba y error para la altura de la línea. 
+
+## Controlador
+
+Para poder calcular las constantes Kp y Kd seguí el siguiente razonamiento
+
+1. Calcular un Kp funcinal a velocidad 10
+Empecé con un Kd = 0 hasta encontrar un Kd que sea capaz de dar una vuelta. Fui probando desde Kp=0.003 aumentando de poco en poco ya que los giros no eran suficientes, hasta que con un Kp = 0.01 era capaz de dar una vuelta entera.
 
 v10 kp 0.003
 
@@ -37,6 +62,7 @@ v10 kp 0.01
 https://github.com/user-attachments/assets/669f7aab-2b21-4c85-bcb3-286fe62cca10
 
 
+Una vez dió la vuelta, aumenté la velocidad para encontrar la máxima velocidad a la que era estable.
 
 v11 kp 0.01
 
@@ -57,51 +83,36 @@ v15 kp 0.01
 
 https://github.com/user-attachments/assets/9c250d16-ea50-45f8-b22f-fc008ad22f22
 
+El resultado fue que la velocidad máxima era 12.
 
+2. Calcular un Kd estable a velocidad 12
+Empecé con un Kd bastante pequeño, de 0.000001. El problema era claramente visible, en las curvas muy cerradas se separaba mucho de la línea central. Seguí aumentando la Kd en 0.001, mejoraba en las curvas cerradas, pero no era suficiente. Finalmente, con un kd de 0.001 no se separaba tanto de la línea y seguía siendo estable, ya que si lo aumentaba más, empezaba a oscilar en las rectas o curvas poco cerradas.
 
 v12 kp 0.01 kd 0.000001
 
 https://github.com/user-attachments/assets/bc3564b4-1af1-4169-b96a-dcdda7e4deef
 
 
-
-
-
-
-
-
-
 v12 kp 0.01 kd 0.0001
 
 
-
-
-
 https://github.com/user-attachments/assets/8381f56e-fb34-4ba9-9a81-8d4884fed42b
-
-
-
-
- 
 
 
 v12 kp 0.01 kp 0.001
 
 https://github.com/user-attachments/assets/cfda952e-ab40-46ed-a55f-ef7a8b934171
 
+3. Ajustar Kp y Kd
+Para reducir de forma significativa el error en las curvas cerradas, aumenté la Kp de nuevo. Con un Kp = 0.02 y Kd = 0.0015 el coche reaccionaba mejor en las curvas cerradas pero oscilaba mucho en las rectas. Si bajaba la Kp a 0.0017 el coche no oscilaba tanto, pero era más lento en las curvas. Finalmente, con un Kp = 0.0018-0.0019 y Kd = 0.0015 el coche reacciona mejor en las curvas cerradas sin oscilar.
 
-
-## vid1
 V12 kp 0.02 kd 0.0015
 
 
 https://github.com/user-attachments/assets/ee14467a-a820-464d-adde-935ba76cbb2f
 
 
-
-
 V12 kp 0.017 kd 0.0015
-
 
 
 https://github.com/user-attachments/assets/cfc255a9-72b8-41d6-be04-1daca4c0a502
@@ -117,23 +128,42 @@ https://github.com/user-attachments/assets/2d377eeb-249b-4c63-889c-174201d39685
 
 
 
+Como última prueba, quería aumentar la velocidad a 15. haciendo un par de ajustes en la parte proporcional, el coche es capaz de dar la vuelta con Kp = 0.021 y kd = 0.0015 pero el aumento de la veocidad hace perder estabilidad.
 
 V12 kp 0.019 kd 0.0015 
-
 
 
 https://github.com/user-attachments/assets/a4a22350-691b-4c78-a0e2-7c6ee878826c
 
 
-
-
 V12 kp 0.021 kd 0.0015
-
-
 
 
 https://github.com/user-attachments/assets/a929b8b4-2d7a-4985-bd22-f530e033e7fa
 
+
+## Resumen cambios
+- Aumento rango H
+- Color centroide
+- Altura línea base
+- Valores Kp y Kd
+
+## Dificultades
+
+Para hacer las modificaciones he tenido dos problemas. El primero fue el desconocimiento de cambio de características de la práctica, como puede ser el color rojo de la línea, pero era fácil de solucionar. El segundo prblema fue que durante la prueba-error para calcular el PID el simulador se desconectaba constantemente y tenía que parar y reiniciar el docker para cada prueba. Esta dificultad se dió especialmente al inicio del cálculo de los valores para el PID, ya que iba robando de poco en poco, pero una vez dí con los valores capaces de dar vueltas, no necesitaba reiniciar.
+
+
+## Vídeos finales
+
+Sigue líneas óptimo:
+- Velocidad 12
+- KP = 0.019
+- KD = 0.0015
+
+Sigue líneas rápido
+- Velocidad 15
+- KP = 0.021
+- KD = 0.0015
 
 
 ## Práctica 5 Monte Carlo Laser Localization
