@@ -114,7 +114,8 @@ Sigue líneas óptimo:
 - KP = 0.019
 - KD = 0.0015
 
-https://github.com/user-attachments/assets/a4a22350-691b-4c78-a0e2-7c6ee878826c
+[vid_fin1.webm](https://github.com/user-attachments/assets/44a539b6-9f21-4ce9-83f5-d43228b14d44)
+
 
 Sigue líneas rápido
 - Velocidad 15
@@ -122,6 +123,8 @@ Sigue líneas rápido
 - KD = 0.0015
 
 https://github.com/user-attachments/assets/a929b8b4-2d7a-4985-bd22-f530e033e7fa
+
+**NOTA:** Estos valores están calculados desde un ordenador personal, pueden variar los parámetros de un ordenador a otro.
 
 
 ## Práctica 5 Monte Carlo Laser Localization
