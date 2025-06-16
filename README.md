@@ -9,10 +9,10 @@ Este es el blog que usaré para la asignatura **Robótica Móvil**. Es este blog
 # Práctica 2 Follow Line (Junio)
 
 ## Introducción
-La segunda práctica consiste en hacer un sigue líneas con un controlador PID, o PD en mi caso, para que de forma reactiva pueda completar una vuelta en varios circuitos. La implementación de esta práctica se puede dividir en dos partes principales: filtro de color y controlador.
+La segunda práctica consiste en implementar un sigue líneas utilizando un controlador PID, o PD en mi caso, para que de forma reactiva pueda completar una vuelta en varios circuitos. La implementación de esta práctica se puede dividir en dos partes principales: filtro de color y controlador.
 
 ## Filtro de color
-Para poder conseguir el centroide de la línea roja he realizado varios cambios. En la primera entrega hacía un filtro de color rojo y luego el centroide, pero quedaba muy cerca del coche y no era efectivo. La modificación consiste en, desde una línea a 250 píxeles, calcular el punto medio de aquellos píexeles que sean rojos. De esta forma, se puede colocar la línea base en la altura más óptima.
+Para calcular el centroide de la línea roja he realizado varios cambios. En la primera entrega hacía un filtro de color rojo y luego calculaba el centroide de toda la línea, pero quedaba muy cerca del coche y no era efectivo (debido a la perspectiva del coche). La modificación consiste en, desde una línea a 250 píxeles fija, calcular el punto medio de aquellos píexeles que sean rojos. De esta forma, se puede colocar la línea base en la altura más óptima.
 
 Otra modificación que he tenído que haceer es aumentar el rango de color rojo, ya que, después de alguna actualización de docker, el color rojo no era el mismo. Para ello he tenido que realizar dos máscaras para los rangos de H separados del color rojo.
 
@@ -24,95 +24,49 @@ lower_red2 = np.array([160, 100, 100])
 upper_red2 = np.array([180, 255, 255])
 
 ```
-Como última modificación, en caso de perder la línea, el centroide se dibuja de color rojo, sino de color azul. De esta forma pude hacer prueba y error para la altura de la línea. 
+Como última modificación, en caso de perder la línea, el centroide no se dibuja de color rojo, sino de color azul. De esta forma pude hacer prueba y error para la altura de la línea. 
 
 ## Controlador
 
 Para poder calcular las constantes Kp y Kd seguí el siguiente razonamiento
 
-1. Calcular un Kp funcinal a velocidad 10
-Empecé con un Kd = 0 hasta encontrar un Kd que sea capaz de dar una vuelta. Fui probando desde Kp=0.003 aumentando de poco en poco ya que los giros no eran suficientes, hasta que con un Kp = 0.01 era capaz de dar una vuelta entera.
+**1. Calcular un Kp funcinal a velocidad 10**
 
-v10 kp 0.003
-
-https://github.com/user-attachments/assets/6feaf922-7730-404c-a9a3-6e908429ff5c
+Empecé con un Kd = 0 hasta encontrar un Kp que sea capaz de dar una vuelta. Fui probando desde Kp=0.003 aumentando de poco en poco ya que los giros no eran suficientes, hasta que con un Kp = 0.01 era capaz de dar una vuelta entera.
 
 
-v10 kp 0.006
-
-https://github.com/user-attachments/assets/c314b7f6-2721-4b51-9667-554df2284b77
+https://github.com/user-attachments/assets/b23b552a-24d8-4f3f-a43b-c739fb63d4fc
 
 
-v10 kp 0.007
+Como se puede ver en el video, según voy aumentando el valor de Kp, el coche reacciona más agresivo a las curvas.
 
-https://github.com/user-attachments/assets/73ee0579-642a-4ee3-8cc9-ca93e12c9949
-
-
-v10 kp 0.008
-
-https://github.com/user-attachments/assets/c6809b4b-663b-4db7-baea-bf2db458921f
-
-v10 kp 0.009
-
-https://github.com/user-attachments/assets/8757285f-5e7e-4fb0-a8de-f6ed3f69211c
+Una vez es capaz de dar varias vueltas, aumenté la velocidad para encontrar la máxima velocidad a la que era estable.
 
 
-v10 kp 0.01
+https://github.com/user-attachments/assets/ff5911db-e36e-46a4-9c9b-fcfe97f93662
 
-https://github.com/user-attachments/assets/669f7aab-2b21-4c85-bcb3-286fe62cca10
-
-
-Una vez dió la vuelta, aumenté la velocidad para encontrar la máxima velocidad a la que era estable.
-
-v11 kp 0.01
-
-https://github.com/user-attachments/assets/eadedc25-a448-421e-b77c-56ad42495fb3
-
-
-v12 kp 0.01
-
-
-
-https://github.com/user-attachments/assets/a4ad76fa-c099-43ea-ba59-70535114fbce
-
-
-
-v15 kp 0.01
-
-
-
-https://github.com/user-attachments/assets/9c250d16-ea50-45f8-b22f-fc008ad22f22
 
 El resultado fue que la velocidad máxima era 12.
 
-2. Calcular un Kd estable a velocidad 12
-Empecé con un Kd bastante pequeño, de 0.000001. El problema era claramente visible, en las curvas muy cerradas se separaba mucho de la línea central. Seguí aumentando la Kd en 0.001, mejoraba en las curvas cerradas, pero no era suficiente. Finalmente, con un kd de 0.001 no se separaba tanto de la línea y seguía siendo estable, ya que si lo aumentaba más, empezaba a oscilar en las rectas o curvas poco cerradas.
+**2. Calcular un Kd estable a velocidad 12**
 
-v12 kp 0.01 kd 0.000001
-
-https://github.com/user-attachments/assets/bc3564b4-1af1-4169-b96a-dcdda7e4deef
+Empecé con un Kd bastante pequeño, de 0.000001. El problema era claramente visible, en las curvas muy cerradas se separaba mucho de la línea central. Seguí aumentando la Kd en 0.001, mejoraba en las curvas cerradas, pero no era suficiente. Finalmente, con un Kd de 0.001 no se separaba tanto de la línea y seguía siendo estable, ya que si lo aumentaba más, empezaba a oscilar en las rectas o curvas poco cerradas.
 
 
-v12 kp 0.01 kd 0.0001
+https://github.com/user-attachments/assets/5bb5f1a5-cad9-4d23-9e3f-c13883d73005
 
 
-https://github.com/user-attachments/assets/8381f56e-fb34-4ba9-9a81-8d4884fed42b
+**3. Ajustar Kp y Kd**
 
+Para reducir más el error en las curvas cerradas, aumenté la Kp de nuevo. Con un Kp = 0.02 y Kd = 0.0015 el coche reaccionaba mejor en las curvas cerradas pero oscilaba mucho en las rectas. Si bajaba la Kp a 0.0017 el coche no oscilaba tanto, pero era más lento en las curvas. Finalmente, con un Kp = 0.0018-0.0019 y Kd = 0.0015 el coche reacciona mejor en las curvas cerradas sin oscilar.
 
-v12 kp 0.01 kp 0.001
-
-https://github.com/user-attachments/assets/cfda952e-ab40-46ed-a55f-ef7a8b934171
-
-3. Ajustar Kp y Kd
-Para reducir de forma significativa el error en las curvas cerradas, aumenté la Kp de nuevo. Con un Kp = 0.02 y Kd = 0.0015 el coche reaccionaba mejor en las curvas cerradas pero oscilaba mucho en las rectas. Si bajaba la Kp a 0.0017 el coche no oscilaba tanto, pero era más lento en las curvas. Finalmente, con un Kp = 0.0018-0.0019 y Kd = 0.0015 el coche reacciona mejor en las curvas cerradas sin oscilar.
-
-V12 kp 0.02 kd 0.0015
+Vel=12 Kp=0.02 Kd=0.0015
 
 
 https://github.com/user-attachments/assets/ee14467a-a820-464d-adde-935ba76cbb2f
 
 
-V12 kp 0.017 kd 0.0015
+Vel=12 Kp=0.017 Kd=0.0015
 
 
 https://github.com/user-attachments/assets/cfc255a9-72b8-41d6-be04-1daca4c0a502
@@ -120,7 +74,7 @@ https://github.com/user-attachments/assets/cfc255a9-72b8-41d6-be04-1daca4c0a502
 
 
 
-V12 kp 0.018-0.019 kd 0.0015
+Vel=12 Kp=0.018-0.019 Kd=0.0015
 
 
 
@@ -128,15 +82,15 @@ https://github.com/user-attachments/assets/2d377eeb-249b-4c63-889c-174201d39685
 
 
 
-Como última prueba, quería aumentar la velocidad a 15. haciendo un par de ajustes en la parte proporcional, el coche es capaz de dar la vuelta con Kp = 0.021 y kd = 0.0015 pero el aumento de la veocidad hace perder estabilidad.
+Como última prueba, quería aumentar la velocidad a 15. haciendo un par de ajustes en la parte proporcional, el coche es capaz de dar la vuelta con Kp = 0.021 y Kd = 0.0015 pero el aumento de la veocidad hace perder estabilidad.
 
-V12 kp 0.019 kd 0.0015 
+Vel=12 Kp=0.019 Kd=0.0015 
 
 
 https://github.com/user-attachments/assets/a4a22350-691b-4c78-a0e2-7c6ee878826c
 
 
-V12 kp 0.021 kd 0.0015
+Vel=15 Kp=0.021 Kd=0.0015
 
 
 https://github.com/user-attachments/assets/a929b8b4-2d7a-4985-bd22-f530e033e7fa
@@ -160,10 +114,14 @@ Sigue líneas óptimo:
 - KP = 0.019
 - KD = 0.0015
 
+https://github.com/user-attachments/assets/a4a22350-691b-4c78-a0e2-7c6ee878826c
+
 Sigue líneas rápido
 - Velocidad 15
 - KP = 0.021
 - KD = 0.0015
+
+https://github.com/user-attachments/assets/a929b8b4-2d7a-4985-bd22-f530e033e7fa
 
 
 ## Práctica 5 Monte Carlo Laser Localization
